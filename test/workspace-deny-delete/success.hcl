@@ -1,11 +1,11 @@
 mock "tfplan/v2" {
     module {
-        source = "tfplan-fail.sentinel"
+        source = "tfplan-success.sentinel"
     }
 }
 
 test {
     rules  = {
-        main = false
+        main = true
     }
 }

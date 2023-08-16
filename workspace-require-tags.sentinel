@@ -3,8 +3,9 @@ import "tfplan/v2" as tfplan
 untagged_workspaces = filter tfplan.resource_changes as _, rc {
     rc.type is "tfe_workspace" and
     rc.change.actions is not ["delete"] and 
-    (rc.change.tag_names else null is null or 
-    rc.change.tag_names is empty)
+    rc.change.actions is not ["no-op"] and 
+    (rc.change.after.tag_names else null is null or 
+    length(rc.change.after.tag_names) == 0)
 }
 
 for untagged_workspaces as k, v {
@@ -14,8 +15,6 @@ for untagged_workspaces as k, v {
 require_workspace_tags = rule {
     length(untagged_workspaces) == 0
 }
-
-
 
 main = rule {
     require_workspace_tags
