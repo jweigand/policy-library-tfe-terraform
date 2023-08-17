@@ -3,7 +3,7 @@ import "tfplan/v2" as tfplan
 untagged_workspaces = filter tfplan.resource_changes as _, rc {
     rc.type is "tfe_workspace" and
     rc.change.actions is not ["delete"] and 
-    rc.change.actions is not ["no-op"] and 
+    #rc.change.actions is not ["no-op"] and 
     (rc.change.after.tag_names else null is null or 
     length(rc.change.after.tag_names) == 0)
 }
