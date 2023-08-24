@@ -68,4 +68,3 @@ resource_changes = {
 		"type":           "tfe_workspace",
 	},
 }
-
