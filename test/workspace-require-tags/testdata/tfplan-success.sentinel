@@ -1,0 +1,70 @@
+terraform_version = "1.4.6"
+
+resource_changes = {
+	"tfe_workspace.tags": {
+		"address": "tfe_workspace.tags",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"agent_pool_id":                 null,
+				"allow_destroy_plan":            true,
+				"assessments_enabled":           true,
+				"auto_apply":                    true,
+				"description":                   null,
+				"execution_mode":                "remote",
+				"file_triggers_enabled":         true,
+				"force_delete":                  false,
+				"name":                          "tags-test",
+				"organization":                  "weigand-hcp",
+				"queue_all_runs":                true,
+				"source_name":                   null,
+				"source_url":                    null,
+				"speculative_enabled":           true,
+				"ssh_key_id":                    null,
+				"structured_run_output_enabled": true,
+				"tag_names": [
+					"drift",
+				],
+				"terraform_version": "~> 1.0",
+				"trigger_patterns":  null,
+				"trigger_prefixes":  null,
+				"vcs_repo": [
+					{
+						"branch":                     null,
+						"github_app_installation_id": "ghain-1A6w5bxhf6mTU3Nh",
+						"identifier":                 "jweigand/tfc-drift-detect-demo",
+						"ingress_submodules":         false,
+						"oauth_token_id":             null,
+						"tags_regex":                 null,
+					},
+				],
+				"working_directory": null,
+			},
+			"after_unknown": {
+				"global_remote_state":       true,
+				"html_url":                  true,
+				"id":                        true,
+				"operations":                true,
+				"project_id":                true,
+				"remote_state_consumer_ids": true,
+				"resource_count":            true,
+				"tag_names": [
+					false,
+				],
+				"vcs_repo": [
+					{},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "tags",
+		"provider_name":  "registry.terraform.io/hashicorp/tfe",
+		"type":           "tfe_workspace",
+	},
+}

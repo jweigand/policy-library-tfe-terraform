@@ -1,0 +1,18 @@
+import "tfplan/v2" as tfplan
+
+deleting_workspaces = filter tfplan.resource_changes as _, rc {
+	rc.type is "tfe_workspace" and
+		rc.change.actions is ["delete"]
+}
+
+for deleting_workspaces as k, v {
+	print(k)
+}
+
+deny_workspace_delete = rule {
+	length(deleting_workspaces) == 0
+}
+
+main = rule {
+	deny_workspace_delete
+}
