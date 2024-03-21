@@ -1,0 +1,12 @@
+import "time"
+import "strings"
+
+param restricted_weekdays default ["Friday", "Saturday", "Sunday"]
+
+if time.now.weekday_name in restricted_weekdays {
+	print("Today is " + time.now.weekday_name + " | Applies are blocked on the following days: " + strings.join(restricted_weekdays, ", "))
+}
+
+main = rule {
+	time.now.weekday_name not in restricted_weekdays
+}
