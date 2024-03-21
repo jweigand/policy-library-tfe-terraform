@@ -1,0 +1,21 @@
+import "tfplan/v2" as tfplan
+
+default_project_workspaces = filter tfplan.resource_changes as _, rc {
+	rc.type is "tfe_workspace" and
+		rc.change.actions is not ["delete"] and
+		#rc.change.actions is not ["no-op"] and
+		(rc.change.after.project_id else null is null or
+		rc.change.after_unknown.project_id == true)
+}
+
+for default_project_workspaces as k, v {
+	print(k)
+}
+
+require_workspace_project_association = rule {
+	length(default_project_workspaces) == 0
+}
+
+main = rule {
+	require_workspace_project_association
+}
