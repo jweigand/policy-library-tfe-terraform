@@ -1,0 +1,14 @@
+import "time"
+import "strings"
+
+param restricted_hours default [8, 9, 10, 11, 12, 1]
+
+print(time.now.hour)
+
+if time.now.hour in restricted_hours {
+	#print("Today is " + time.now + " | Applies are blocked on the following days: " + strings.join(restricted_hours, ", "))
+}
+
+main = rule {
+	time.now.hour not in restricted_hours
+}
