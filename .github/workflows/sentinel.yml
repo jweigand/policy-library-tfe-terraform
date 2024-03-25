@@ -29,6 +29,5 @@ jobs:
         uses: bloominlabs/setup-hashicorp-releases@24ba535809adca0a710fd39db83eef75cc90af0e # v2.0.0
         with:
           package: sentinel
-#          version: ^0.18.11
       - name: Sentinel Test
         run: sentinel test $(find . -name "*.sentinel" -type f ! -path "*/testdata/*")
