@@ -6,14 +6,14 @@ import "tfconfig/v2" as tfconfig
 param allowed_providers default ["registry.terraform.io/hashicorp/aws"]
 
 violating_providers = filter tfconfig.providers as _, p {
-    p.full_name not in allowed_providers
+	p.full_name not in allowed_providers
 }
 
 if length(violating_providers) > 0 {
-    print("The following providers are not allowed:")
-    for violating_providers as _, p {
-        print(_ + " : " + p.full_name)
-    }
+	print("The following providers are not allowed:")
+	for violating_providers as _, p {
+		print(_ + " : " + p.full_name)
+	}
 }
 
 main = rule {
