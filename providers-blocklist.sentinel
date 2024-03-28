@@ -3,7 +3,7 @@
 
 import "tfconfig/v2" as tfconfig
 
-param blocked_providers default ["registry.terraform.io/hashicorp/local"]
+param blocked_providers default ["registry.terraform.io/hashicorp/tls"]
 
 violating_providers = filter tfconfig.providers as _, p {
 	p.full_name in blocked_providers
