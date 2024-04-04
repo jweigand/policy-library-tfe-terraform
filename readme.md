@@ -3,12 +3,15 @@ Prescriptive Sentinel policies that can be used to establish granular Terraform 
 
 
 # Completed Policies
-* Prevent Workspace Deletion
-* Require Workspace Tagging
+* Provider Allow List
+* Provider Block List
+* Time Deny Apply at Hours of Day
+* Time Deny Apply on Days of Week
+* Workspace Deny Deletion
+* Workspace Deny Execution Modes
+* Workspace Require Tags
 
 # Planned Policies
 * Require Workspace/Project Association 
 * Require Workspace/Agent Pool Assignment
-* Prevent Workspace Local Execution Mode
 * Prevent Specific Module Usage
-* Prevent Specific Provider Usage
