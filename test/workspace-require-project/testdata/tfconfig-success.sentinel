@@ -1,0 +1,430 @@
+import "strings"
+
+
+
+resources = {
+	"tfe_project.new": {
+		"address": "tfe_project.new",
+		"config": {
+			"name": {
+				"constant_value": "new",
+			},
+			"organization": {
+				"references": [
+					"data.tfe_organization.this.name",
+					"data.tfe_organization.this",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "new",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_project",
+	},
+	"tfe_workspace.eks-demo": {
+		"address": "tfe_workspace.eks-demo",
+		"config": {
+			"allow_destroy_plan": {
+				"constant_value": true,
+			},
+			"assessments_enabled": {
+				"constant_value": true,
+			},
+			"auto_apply": {
+				"constant_value": true,
+			},
+			"name": {
+				"constant_value": "eks-demo",
+			},
+			"organization": {
+				"references": [
+					"data.tfe_organization.this.name",
+					"data.tfe_organization.this",
+				],
+			},
+			"speculative_enabled": {
+				"constant_value": true,
+			},
+			"tag_names": {
+				"constant_value": [
+					"eks",
+				],
+			},
+			"terraform_version": {
+				"constant_value": "~> 1.0",
+			},
+			"vcs_repo": [
+				{
+					"github_app_installation_id": {
+						"references": [
+							"data.tfe_github_app_installation.jweigand.id",
+							"data.tfe_github_app_installation.jweigand",
+						],
+					},
+					"identifier": {
+						"constant_value": "jweigand/eks-tfc-agents",
+					},
+				},
+			],
+			"working_directory": {
+				"constant_value": "eks",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "eks-demo",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_workspace",
+	},
+	"tfe_workspace.eks_tfc_agent_irsa": {
+		"address": "tfe_workspace.eks_tfc_agent_irsa",
+		"config": {
+			"agent_pool_id": {
+				"references": [
+					"tfe_agent_pool.eks.id",
+					"tfe_agent_pool.eks",
+				],
+			},
+			"allow_destroy_plan": {
+				"constant_value": true,
+			},
+			"assessments_enabled": {
+				"constant_value": true,
+			},
+			"auto_apply": {
+				"constant_value": true,
+			},
+			"execution_mode": {
+				"constant_value": "agent",
+			},
+			"name": {
+				"constant_value": "eks-tfc-agent-irsa",
+			},
+			"organization": {
+				"references": [
+					"data.tfe_organization.this.name",
+					"data.tfe_organization.this",
+				],
+			},
+			"project_id": {
+				"references": [
+					"data.tfe_project.demo.id",
+					"data.tfe_project.demo",
+				],
+			},
+			"speculative_enabled": {
+				"constant_value": true,
+			},
+			"tag_names": {
+				"constant_value": [
+					"eks",
+				],
+			},
+			"terraform_version": {
+				"constant_value": "~> 1.0",
+			},
+			"vcs_repo": [
+				{
+					"github_app_installation_id": {
+						"references": [
+							"data.tfe_github_app_installation.jweigand.id",
+							"data.tfe_github_app_installation.jweigand",
+						],
+					},
+					"identifier": {
+						"constant_value": "jweigand/eks-tfc-agents",
+					},
+				},
+			],
+			"working_directory": {
+				"constant_value": "agent_test",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "eks_tfc_agent_irsa",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_workspace",
+	},
+	"tfe_workspace.module_output": {
+		"address": "tfe_workspace.module_output",
+		"config": {
+			"allow_destroy_plan": {
+				"constant_value": true,
+			},
+			"auto_apply": {
+				"constant_value": true,
+			},
+			"file_triggers_enabled": {
+				"constant_value": true,
+			},
+			"name": {
+				"constant_value": "module_output",
+			},
+			"organization": {
+				"references": [
+					"data.tfe_organization.this.name",
+					"data.tfe_organization.this",
+				],
+			},
+			"queue_all_runs": {
+				"constant_value": true,
+			},
+			"speculative_enabled": {
+				"constant_value": true,
+			},
+			"terraform_version": {
+				"constant_value": "~> 1.0",
+			},
+			"trigger_prefixes": {
+				"constant_value": [
+					"module_output",
+				],
+			},
+			"vcs_repo": [
+				{
+					"github_app_installation_id": {
+						"references": [
+							"data.tfe_github_app_installation.jweigand.id",
+							"data.tfe_github_app_installation.jweigand",
+						],
+					},
+					"identifier": {
+						"constant_value": "jweigand/misc",
+					},
+				},
+			],
+			"working_directory": {
+				"constant_value": "module_output",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "module_output",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_workspace",
+	},
+	"tfe_workspace.new_project": {
+		"address": "tfe_workspace.new_project",
+		"config": {
+			"allow_destroy_plan": {
+				"constant_value": true,
+			},
+			"assessments_enabled": {
+				"constant_value": true,
+			},
+			"auto_apply": {
+				"constant_value": true,
+			},
+			"name": {
+				"constant_value": "newproject",
+			},
+			"organization": {
+				"references": [
+					"data.tfe_organization.this.name",
+					"data.tfe_organization.this",
+				],
+			},
+			"project_id": {
+				"references": [
+					"tfe_project.new.id",
+					"tfe_project.new",
+				],
+			},
+			"speculative_enabled": {
+				"constant_value": true,
+			},
+			"tag_names": {
+				"constant_value": [
+					"eks",
+				],
+			},
+			"terraform_version": {
+				"constant_value": "~> 1.0",
+			},
+			"vcs_repo": [
+				{
+					"github_app_installation_id": {
+						"references": [
+							"data.tfe_github_app_installation.jweigand.id",
+							"data.tfe_github_app_installation.jweigand",
+						],
+					},
+					"identifier": {
+						"constant_value": "jweigand/eks-tfc-agents",
+					},
+				},
+			],
+			"working_directory": {
+				"constant_value": "agent_test",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "new_project",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_workspace",
+	},
+	"tfe_workspace.no_project": {
+		"address": "tfe_workspace.no_project",
+		"config": {
+			"allow_destroy_plan": {
+				"constant_value": true,
+			},
+			"assessments_enabled": {
+				"constant_value": true,
+			},
+			"auto_apply": {
+				"constant_value": true,
+			},
+			"name": {
+				"constant_value": "project",
+			},
+			"organization": {
+				"references": [
+					"data.tfe_organization.this.name",
+					"data.tfe_organization.this",
+				],
+			},
+			"speculative_enabled": {
+				"constant_value": true,
+			},
+			"tag_names": {
+				"constant_value": [
+					"eks",
+				],
+			},
+			"terraform_version": {
+				"constant_value": "~> 1.0",
+			},
+			"vcs_repo": [
+				{
+					"github_app_installation_id": {
+						"references": [
+							"data.tfe_github_app_installation.jweigand.id",
+							"data.tfe_github_app_installation.jweigand",
+						],
+					},
+					"identifier": {
+						"constant_value": "jweigand/eks-tfc-agents",
+					},
+				},
+			],
+			"working_directory": {
+				"constant_value": "agent_test",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "no_project",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_workspace",
+	},
+	"tfe_workspace.project": {
+		"address": "tfe_workspace.project",
+		"config": {
+			"allow_destroy_plan": {
+				"constant_value": true,
+			},
+			"assessments_enabled": {
+				"constant_value": true,
+			},
+			"auto_apply": {
+				"constant_value": true,
+			},
+			"name": {
+				"constant_value": "project",
+			},
+			"organization": {
+				"references": [
+					"data.tfe_organization.this.name",
+					"data.tfe_organization.this",
+				],
+			},
+			"project_id": {
+				"references": [
+					"data.tfe_project.demo.id",
+					"data.tfe_project.demo",
+				],
+			},
+			"speculative_enabled": {
+				"constant_value": true,
+			},
+			"tag_names": {
+				"constant_value": [
+					"eks",
+				],
+			},
+			"terraform_version": {
+				"constant_value": "~> 1.0",
+			},
+			"vcs_repo": [
+				{
+					"github_app_installation_id": {
+						"references": [
+							"data.tfe_github_app_installation.jweigand.id",
+							"data.tfe_github_app_installation.jweigand",
+						],
+					},
+					"identifier": {
+						"constant_value": "jweigand/eks-tfc-agents",
+					},
+				},
+			],
+			"working_directory": {
+				"constant_value": "agent_test",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "project",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_workspace",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}
