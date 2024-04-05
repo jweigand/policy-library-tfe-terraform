@@ -1,0 +1,21 @@
+# This policy blocks Terraform applies during hours of the day (using military/24 hour time) specified in the `restricted_hours` parameter.
+import "time"
+import "strings"
+
+param restricted_hours default [8, 9, 10, 11, 12]
+
+if time.now.hour in restricted_hours {
+	print("Applies are blocked at these hours (24 hour time):")
+	for restricted_hours as hour {
+		if time.now.hour is hour {
+			print(" -", hour, "*")
+		} else {
+			print(" -", hour)
+		}
+	}
+
+}
+
+main = rule {
+	time.now.hour not in restricted_hours
+}

@@ -1,0 +1,20 @@
+# This policy blocks Terraform Apply on days of the week specified in the restricted_weekdays parameter.
+import "time"
+import "strings"
+
+param restricted_weekdays default ["Friday", "Saturday", "Sunday"]
+
+if time.now.weekday_name in restricted_weekdays {
+	print("Applies are blocked on these days:")
+	for restricted_weekdays as day {
+		if time.now.weekday_name == day {
+			print(" - " + day + " *")
+		} else {
+			print(" - " + day)
+		}
+	}
+}
+
+main = rule {
+	time.now.weekday_name not in restricted_weekdays
+}

@@ -1,21 +1,20 @@
+# This policy requires that all Terraform Cloud/Enterprise workspaces are created with at least one tag.
 import "tfplan/v2" as tfplan
 
 untagged_workspaces = filter tfplan.resource_changes as _, rc {
 	rc.type is "tfe_workspace" and
 		rc.change.actions is not ["delete"] and
-		#rc.change.actions is not ["no-op"] and
 		(rc.change.after.tag_names else null is null or
 			length(rc.change.after.tag_names) == 0)
 }
 
-for untagged_workspaces as k, v {
-	print(k)
-}
-
-require_workspace_tags = rule {
-	length(untagged_workspaces) == 0
+if length(untagged_workspaces) > 0 {
+	print("These workspaces are configured without tags:")
+	for untagged_workspaces as k, v {
+		print(" - " + k)
+	}
 }
 
 main = rule {
-	require_workspace_tags
+	length(untagged_workspaces) == 0
 }
