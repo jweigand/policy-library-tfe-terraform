@@ -1,14 +1,23 @@
+# This policy prevents accidental deletion of workspaces by requiring that they have a 'delete' tag before they can be deleted.
 import "tfplan/v2" as tfplan
 
-deleting_workspaces = filter tfplan.resource_changes as _, rc {
+violating_workspaces = filter tfplan.resource_changes as _, rc {
 	rc.type is "tfe_workspace" and
-		rc.change.actions is ["delete"]
+		rc.change.actions is ["delete"] and
+		rc.change.before.tag_names not contains "delete"
 }
 
-for deleting_workspaces as k, v {
+if length(violating_workspaces) > 0 {
+	print("These workspaces are being deleted but do not have a 'delete' tag (required as a safety measure to prevent accidental deletion):")
+	for violating_workspaces as k, v {
+		print(" -", k)
+	}
+}
+
+for violating_workspaces as k, v {
 	print(k)
 }
 
 main = rule {
-	length(deleting_workspaces) == 0
+	length(violating_workspaces) == 0
 }
