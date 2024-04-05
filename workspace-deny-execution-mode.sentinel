@@ -5,27 +5,27 @@ param denied_execution_modes default ["local", "agent"]
 
 violating_workspaces = filter tfplan.resource_changes as _, rc {
 	rc.type is "tfe_workspace" and
-	rc.change.actions is not ["delete"] and
-	rc.change.after.execution_mode in denied_execution_modes
+		rc.change.actions is not ["delete"] and
+		rc.change.after.execution_mode in denied_execution_modes
 }
 
 violating_workspace_settings = filter tfplan.resource_changes as _, rc {
 	rc.type is "tfe_workspace_settings" and
-	rc.change.actions is not ["delete"] and
-	rc.change.after.execution_mode in denied_execution_modes
+		rc.change.actions is not ["delete"] and
+		rc.change.after.execution_mode in denied_execution_modes
 }
 
 violating_org_default = filter tfplan.resource_changes as _, rc {
 	rc.type is "tfe_organization_default_settings" and
-	rc.change.actions is not ["delete"] and
-	rc.change.after.default_execution_mode in denied_execution_modes
+		rc.change.actions is not ["delete"] and
+		rc.change.after.default_execution_mode in denied_execution_modes
 }
 
 if length(violating_workspaces) != 0 {
 	print()
 	print("These workspaces are using blocked execution modes [" + strings.join(denied_execution_modes, ", ") + "]:")
 	for violating_workspaces as k, v {
-		print(k + " [" + v.change.after.execution_mode + "]")
+		print(" - " + k + " [" + v.change.after.execution_mode + "]")
 	}
 }
 
@@ -33,7 +33,7 @@ if length(violating_workspace_settings) != 0 {
 	print()
 	print("These workspace settings are using blocked execution modes [" + strings.join(denied_execution_modes, ", ") + "]:")
 	for violating_workspace_settings as k, v {
-		print(k + " [" + v.change.after.execution_mode + "]")
+		print(" - " + k + " [" + v.change.after.execution_mode + "]")
 	}
 }
 
@@ -41,7 +41,7 @@ if length(violating_org_default) != 0 {
 	print()
 	print("The organization default is set to a blocked execution mode [" + strings.join(denied_execution_modes, ", ") + "]:")
 	for violating_org_default as k, v {
-		print(k + " [" + v.change.after.default_execution_mode + "]")
+		print(" - " + k + " [" + v.change.after.default_execution_mode + "]")
 	}
 }
 

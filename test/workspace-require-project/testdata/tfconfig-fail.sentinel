@@ -1,6 +1,5 @@
 import "strings"
 
-
 resources = {
 	"tfe_project.new": {
 		"address": "tfe_project.new",

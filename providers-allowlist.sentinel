@@ -10,9 +10,9 @@ violating_providers = filter tfconfig.providers as _, p {
 }
 
 if length(violating_providers) > 0 {
-	print("The following providers are not allowed:")
+	print("These providers are not allowed:")
 	for violating_providers as _, p {
-		print(_ + " : " + p.full_name)
+		print(" - " + _ + " (" + p.full_name + ")")
 	}
 }
 

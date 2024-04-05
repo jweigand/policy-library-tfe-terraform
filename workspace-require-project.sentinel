@@ -1,21 +1,36 @@
 import "tfplan/v2" as tfplan
+import "tfconfig/v2" as tfconfig
 
-default_project_workspaces = filter tfplan.resource_changes as _, rc {
+unknown_project_workspaces = filter tfplan.resource_changes as _, rc {
 	rc.type is "tfe_workspace" and
 		rc.change.actions is not ["delete"] and
-		#rc.change.actions is not ["no-op"] and
-		(rc.change.after.project_id else null is null or
-			rc.change.after_unknown.project_id == true)
+		#rc.change.after_unknown != {} and
+		rc.change.after_unknown contains "project_id"
 }
 
-for default_project_workspaces as k, v {
-	print(k)
+# filtering on the plan resource changes is not enough in this case, as it could be referencing a variable or project resource / data source - comparing against the config
+
+workspace_configs = filter tfconfig.resources as _, wc {
+	wc.type is "tfe_workspace"
 }
 
-require_workspace_project_association = rule {
-	length(default_project_workspaces) == 0
+violating_workspaces = []
+
+for unknown_project_workspaces as rc_k, rc_v {
+	for workspace_configs as wc_k, wc_v {
+		if rc_k is wc_k and wc_v.config not contains "project_id" {
+			append(violating_workspaces, rc_k)
+		}
+	}
+}
+
+if length(violating_workspaces) > 0 {
+	print("These workspaces are configured without an explicit project reference:")
+	for violating_workspaces as vw {
+		print(" - " + vw)
+	}
 }
 
 main = rule {
-	require_workspace_project_association
+	length(violating_workspaces) == 0
 }

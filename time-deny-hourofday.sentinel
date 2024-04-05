@@ -1,12 +1,18 @@
 import "time"
 import "strings"
 
-param restricted_hours default [8, 9, 10, 11, 12, 1]
-
-print(time.now.hour)
+param restricted_hours default [8, 9, 10, 11, 12]
 
 if time.now.hour in restricted_hours {
-	#print("Today is " + time.now + " | Applies are blocked on the following days: " + strings.join(restricted_hours, ", "))
+	print("Applies are blocked at these hours (24 hour time):")
+	for restricted_hours as hour {
+		if time.now.hour is hour {
+			print(" -", hour, "*")
+		} else {
+			print(" -", hour)
+		}
+	}
+
 }
 
 main = rule {

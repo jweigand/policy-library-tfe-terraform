@@ -9,10 +9,6 @@ for deleting_workspaces as k, v {
 	print(k)
 }
 
-deny_workspace_delete = rule {
-	length(deleting_workspaces) == 0
-}
-
 main = rule {
-	deny_workspace_delete
+	length(deleting_workspaces) == 0
 }

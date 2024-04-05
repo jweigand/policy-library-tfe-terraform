@@ -1,7 +1,5 @@
 terraform_version = "1.4.6"
 
-
-
 resource_changes = {
 
 	"tfe_project.new": {
@@ -528,5 +526,3 @@ resource_changes = {
 }
 
 output_changes = {}
-
-
