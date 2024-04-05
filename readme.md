@@ -1,17 +1,5 @@
 # Sentinel Policy Set for the TFE Provider
-Prescriptive Sentinel policies that can be used to establish granular Terraform configuration for managing Terraform Cloud/Terraform Enterprise.
+Prescriptive Sentinel policies that can be used to establish granular Terraform configuration for managing Terraform Cloud/Terraform Enterprise. These policies are primarily intended to serve as examples or building blocks for additional customization as required, but can be used directly to enforce certain policies when needed. 
 
-
-# Completed Policies
-* Provider Allow List
-* Provider Block List
-* Time Deny Apply at Hours of Day
-* Time Deny Apply on Days of Week
-* Workspace Deny Deletion
-* Workspace Deny Execution Modes
-* Workspace Require Tags
-
-# Planned Policies
-* Require Workspace/Project Association 
-* Require Workspace/Agent Pool Assignment
-* Prevent Specific Module Usage
+## Reporting
+If you believe you have found a defect in these policies, or would like to request an improvement/new policy, please report using the GitHub issue tracker.
