@@ -1,3 +1,5 @@
+# This policy prevents the use of certain execution modes in Terraform Cloud/Enterprise workspaces.
+
 import "tfplan/v2" as tfplan
 import "strings"
 
