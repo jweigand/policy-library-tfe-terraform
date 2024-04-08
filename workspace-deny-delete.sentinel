@@ -1,4 +1,4 @@
-# This policy prevents accidental deletion of workspaces by requiring that they have a 'delete' tag before they can be deleted.
+# This policy prevents accidental deletion of workspaces by requiring that they have a `delete` tag before they can be deleted.
 import "tfplan/v2" as tfplan
 
 violating_workspaces = filter tfplan.resource_changes as _, rc {
