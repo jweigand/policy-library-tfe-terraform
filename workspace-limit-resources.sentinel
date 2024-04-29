@@ -1,0 +1,17 @@
+# This policy blocks Terraform Apply when the number of planned resources exceeds the `resource_limit` parameter.
+
+import "tfplan/v2" as tfplan
+
+param resource_limit default 500
+
+resources = filter tfplan.resource_changes as _, rc {
+	rc.change.actions is not ["delete"]
+}
+
+if length(resources) > resource_limit {
+	print("Workspaces are limited to", int(resource_limit), "resources. This plan has", int(length(resources)), "resources.")
+}
+
+main = rule {
+	length(resources) <= resource_limit
+}

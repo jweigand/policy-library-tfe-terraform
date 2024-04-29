@@ -33,6 +33,11 @@ policy "workspace-deny-delete" {
     enforcement_level = "hard-mandatory"
 }
 
+policy "workspace-limit-resources" {
+    source = "./workspace-limit-resources.sentinel"
+    enforcement_level = "soft-mandatory"
+}
+
 policy "workspace-deny-execution-mode" {
     source = "./workspace-deny-execution-mode.sentinel"
     enforcement_level = "hard-mandatory"
