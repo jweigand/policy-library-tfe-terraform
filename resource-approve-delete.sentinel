@@ -1,0 +1,21 @@
+# This policy prevents accidental destruction of resources and when setting a soft-manadatory enforcement policy, it will require approval. 
+# This is a very blanket policy, a more specific example can be found here : https://github.com/hashicorp/terraform-sentinel-policies/blob/main/cloud-agnostic/prevent-destruction-of-prohibited-resources.sentinel
+import "tfplan/v2" as tfplan
+
+violating_resources = filter tfplan.resource_changes as _, rc {
+		rc.change.actions is ["delete"]
+}
+
+if length(violating_resources) > 0 {
+  print("Total resources to be deleted:", length(violating_resources))
+	print("\n These resources will be deleted:")
+  count = 0
+	for violating_resources as k, v {
+    count +=1
+		print(count," -", k)
+	}
+}
+
+main = rule {
+	length(violating_resources) == 0
+}
