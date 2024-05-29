@@ -1,5 +1,5 @@
-# This policy prevents accidental deletion of resources by requiring that they have a `delete` tag before they can be deleted.
-# 
+# This policy prevents accidental destruction of resources and when setting a soft-manadatory requires approval. 
+# This is a very blanket policy, a more specific example can be found here : https://github.com/hashicorp/terraform-sentinel-policies/blob/main/cloud-agnostic/prevent-destruction-of-prohibited-resources.sentinel
 import "tfplan/v2" as tfplan
 
 violating_resources = filter tfplan.resource_changes as _, rc {
