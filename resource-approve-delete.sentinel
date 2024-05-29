@@ -1,4 +1,4 @@
-# This policy prevents accidental destruction of resources and when setting a soft-manadatory requires approval. 
+# This policy prevents accidental destruction of resources and when setting a soft-manadatory enforcement policy, it will require approval. 
 # This is a very blanket policy, a more specific example can be found here : https://github.com/hashicorp/terraform-sentinel-policies/blob/main/cloud-agnostic/prevent-destruction-of-prohibited-resources.sentinel
 import "tfplan/v2" as tfplan
 
