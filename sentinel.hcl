@@ -18,6 +18,11 @@ policy "providers-blocklist" {
     enforcement_level = "hard-mandatory"
 }
 
+policy "resource-approve-delete" {
+    source = "./resource-approve-delete.sentinel"
+    enforcement_level = "soft-mandatory"
+}
+
 policy "time-deny-dayofweek" {
     source = "./time-deny-dayofweek.sentinel"
     enforcement_level = "hard-mandatory"
