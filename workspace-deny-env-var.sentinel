@@ -1,0 +1,22 @@
+import "tfrun" as tfrun
+
+param deny_env_vars default ["HTTP_PROXY", "HTTPS_PROXY"]
+
+violating_env_vars = filter tfrun.variables as k, v {
+	v.category is "env" and k in deny_env_vars
+}
+
+if length(violating_env_vars) > 0 {
+	print("These environment variables are not allowed:")
+	for deny_env_vars as d {
+		if d in violating_env_vars {
+			print(" - " + d + " *")
+		} else {
+			print(" - " + d)
+		}
+	}
+}
+
+main = rule {
+	length(violating_env_vars) == 0
+}

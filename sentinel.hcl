@@ -38,6 +38,11 @@ policy "workspace-limit-resources" {
     enforcement_level = "soft-mandatory"
 }
 
+policy "workspace-deny-env-var" {
+    source = "./workspace-deny-env-var.sentinel"
+    enforcement_level = "advisory"
+}
+
 policy "workspace-deny-execution-mode" {
     source = "./workspace-deny-execution-mode.sentinel"
     enforcement_level = "hard-mandatory"
