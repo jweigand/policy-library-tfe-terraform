@@ -1,0 +1,38 @@
+id = "run-TsvjzLV8FsTkGVRp"
+created_at = "2024-07-25T18:53:00.359Z"
+created_by = "admin"
+message = "Triggered via UI"
+project = {
+	"id":   "prj-UK9DiaZFJ2z5LjHN",
+	"name": "demo-vcs-runs",
+}
+
+variables = {
+	"TFC_AGENT_LOG_JSON": {
+		"category":  "env",
+		"sensitive": false,
+	},
+}
+
+organization = {
+	"name": "org-0",
+}
+
+workspace = {
+	"auto_apply":     true,
+	"created_at":     "2023-12-19T20:58:05.102Z",
+	"description":    "",
+	"execution_mode": "remote",
+	"id":             "ws-qxU6zhZKT19e23cB",
+	"name":           "vcs-0",
+	"tags": [
+		"vcs",
+	],
+	"vcs_repo": {
+		"branch":             "",
+		"display_identifier": "jweigand/repo",
+		"identifier":         "jweigand/repo",
+		"ingress_submodules": false,
+	},
+	"working_directory": "tfe/sample",
+}
