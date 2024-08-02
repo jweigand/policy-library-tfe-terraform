@@ -1,0 +1,7 @@
+import "tfplan/v2" as tfplan
+
+param allowed_versions default ["1.5.7"]
+
+main = rule {
+	tfplan.terraform_version in allowed_versions
+}
