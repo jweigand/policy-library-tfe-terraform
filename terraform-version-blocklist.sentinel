@@ -1,0 +1,7 @@
+import "tfplan/v2" as tfplan
+
+param blocked_versions default ["0.14.11", "1.7.5"]
+
+main = rule {
+	tfplan.terraform_version not in blocked_versions
+}

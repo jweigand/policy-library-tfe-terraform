@@ -18,6 +18,16 @@ policy "providers-blocklist" {
     enforcement_level = "hard-mandatory"
 }
 
+policy "terraform-version-allowlist" {
+    source = "./terraform-version-allowlist.sentinel"
+    enforcement_level = "hard-mandatory"
+}
+
+policy "terraform-version-blocklist" {
+    source = "./terraform-version-blocklist.sentinel"
+    enforcement_level = "hard-mandatory"
+}
+
 policy "time-deny-dayofweek" {
     source = "./time-deny-dayofweek.sentinel"
     enforcement_level = "hard-mandatory"
