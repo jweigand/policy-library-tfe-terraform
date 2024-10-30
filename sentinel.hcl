@@ -67,8 +67,3 @@ policy "workspace-require-tags" {
     source = "./workspace-require-tags.sentinel"
     enforcement_level = "advisory"
 }
-
-policy "intel-google-compute-instance-deny-unapproved-instance-types" {
-  source = "https://registry.terraform.io/v2/policies/intel/intel-gcp/3.0.3/policy/intel-google-compute-instance-deny-unapproved-instance-types.sentinel?checksum=sha256:161b2de82f46307bf0b2f529bd88936b143ce8e9f3f1dd35149ac5bc7e4ea17a"
-  enforcement_level = "advisory"
-}
