@@ -67,3 +67,8 @@ policy "workspace-require-tags" {
     source = "./workspace-require-tags.sentinel"
     enforcement_level = "advisory"
 }
+
+policy "cis_registry_test" {
+  source = "https://github.com/hashicorp/policy-library-cis-aws-iam-terraform/blob/main/policies/iam-password-length.sentinel"
+  enforcement_level = "advisory"
+}
