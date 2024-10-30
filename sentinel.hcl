@@ -68,7 +68,7 @@ policy "workspace-require-tags" {
     enforcement_level = "advisory"
 }
 
-policy "cis_registry_test" {
-  source = "https://github.com/hashicorp/policy-library-cis-aws-iam-terraform/blob/main/policies/iam-password-length.sentinel"
+policy "intel-google-compute-instance-deny-unapproved-instance-types" {
+  source = "https://registry.terraform.io/v2/policies/intel/intel-gcp/3.0.3/policy/intel-google-compute-instance-deny-unapproved-instance-types.sentinel?checksum=sha256:161b2de82f46307bf0b2f529bd88936b143ce8e9f3f1dd35149ac5bc7e4ea17a"
   enforcement_level = "advisory"
 }
