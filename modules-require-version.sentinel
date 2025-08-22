@@ -1,0 +1,20 @@
+# This policy blocks Terraform Apply when a module does not meet version constraint requirements.
+
+import "tfconfig/v2" as tfconfig
+import "strings"
+
+violating_modules = filter tfconfig.module_calls as _, m {
+	m.version_constraint is "" or
+		strings.has_prefix(m.version_constraint, ">")
+}
+
+if length(violating_modules) > 0 {
+	print("These modules do not have an acceptable version constraint:")
+	for violating_modules as _, m {
+		print(_ + " (" + m.source + ")" + " | version constraint: \"" + m.version_constraint + "\"")
+	}
+}
+
+main = rule {
+	length(violating_modules) == 0
+}

@@ -8,6 +8,11 @@ policy "modules-blocklist" {
     enforcement_level = "hard-mandatory"
 }
 
+policy "modules-require-version" {
+    source = "./modules-require-version.sentinel"
+    enforcement_level = "hard-mandatory"
+}
+
 policy "providers-allowlist" {
     source = "./providers-allowlist.sentinel"
     enforcement_level = "hard-mandatory"
@@ -15,6 +20,11 @@ policy "providers-allowlist" {
 
 policy "providers-blocklist" {
     source = "./providers-blocklist.sentinel"
+    enforcement_level = "hard-mandatory"
+}
+
+policy "providers-require-version" {
+    source = "./providers-require-version.sentinel"
     enforcement_level = "hard-mandatory"
 }
 
