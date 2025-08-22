@@ -1,12 +1,11 @@
-# This policy blocks Terraform Apply when a provider not listed in the `allowed_providers` parameter is detected in the configuration.
-# NOTE: this policy should not be considered as full mitigation against threats from potentially malicious providers, due to the fact that provider code is executed during the plan phase. This policy is intended to provide a basic level of protection against accidental use of disallowed providers.
+# This policy blocks Terraform Apply when a provider does not meet version constraint requirements.
 
 import "tfconfig/v2" as tfconfig
 import "strings"
 
 violating_providers = filter tfconfig.providers as _, p {
-	p.version_constraint is "" or 
-	strings.has_prefix(p.version_constraint, ">") # this prevents the use of some version constraint operators that would permissively allow major version upgrades
+	p.version_constraint is "" or
+		strings.has_prefix(p.version_constraint, ">") # this prevents the use of some version constraint operators that would permissively allow major version upgrades
 }
 
 if length(violating_providers) > 0 {
