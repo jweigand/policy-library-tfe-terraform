@@ -9,6 +9,7 @@ violating_modules = filter tfconfig.module_calls as _, m {
 }
 
 if length(violating_modules) > 0 {
+	print("These modules do not have an acceptable version constraint:");
 	for violating_modules as _, m {
 		print(_ + " (" + m.source + ")" + " | version constraint: \"" + m.version_constraint + "\"")
 	}
