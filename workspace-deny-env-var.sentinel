@@ -1,6 +1,6 @@
 import "tfrun" as tfrun
 
-param deny_env_vars default ["HTTP_PROXY", "HTTPS_PROXY"]
+param deny_env_vars default ["HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY"]
 
 violating_env_vars = filter tfrun.variables as k, v {
 	v.category is "env" and k in deny_env_vars
